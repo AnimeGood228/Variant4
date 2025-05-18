@@ -1,0 +1,44 @@
+﻿<Window x:Class="Variant4.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Список заявок" Height="500" Width="800" WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Верх: приветствие -->
+            <RowDefinition Height="*"/>
+            <!-- Центр: таблица -->
+            <RowDefinition Height="Auto"/>
+            <!-- Низ: кнопки -->
+        </Grid.RowDefinitions>
+
+        <!-- Верх: Приветствие и кнопка "Добавить" -->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0 0 0 10">
+            <TextBlock Text="Добро пожаловать, " VerticalAlignment="Center"/>
+            <TextBlock x:Name="UserNameBlock" FontWeight="Bold" VerticalAlignment="Center"/>
+            <Button Content="Добавить" Margin="10 0" Click="Add_Click"/>
+        </StackPanel>
+
+        <!-- Центр: Таблица заявок -->
+        <DataGrid x:Name="RequestsGrid" Grid.Row="1" AutoGenerateColumns="False" Margin="0 0 0 10"
+                  IsReadOnly="True" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Артикул" Binding="{Binding Article}" Width="*"/>
+                <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="*"/>
+                <DataGridTextColumn Header="Тип" Binding="{Binding Type}" Width="*"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="*"/>
+                <DataGridTextColumn Header="Дата" Binding="{Binding CreatedDate}" Width="*"/>
+                <DataGridTextColumn Header="Исполнитель" Binding="{Binding User.FullName}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Низ: Кнопки -->
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Left" Margin="0 0 0 5">
+            <Button Content="Редактировать" Click="Edit_Click" Margin="5"/>
+            <Button Content="Удалить" Click="Delete_Click" Margin="5"/>
+            <Button Content="Назначить себе" Click="Assign_Click" Margin="5"/>
+            <Button Content="Снять с себя" Click="Unassign_Click" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>
